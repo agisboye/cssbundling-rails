@@ -1,7 +1,7 @@
 say "Install Bootstrap with Bootstrap Icons and Popperjs/core"
 copy_file "#{__dir__}/application.bootstrap.scss",
    "app/assets/stylesheets/application.bootstrap.scss"
-run "yarn add sass bootstrap bootstrap-icons @popperjs/core"
+run "npm install sass bootstrap bootstrap-icons @popperjs/core"
 
 inject_into_file "config/initializers/assets.rb", after: /.*Rails.application.config.assets.paths.*\n/ do
   <<~RUBY
@@ -23,5 +23,5 @@ if (`npx -v`.to_f < 7.1 rescue "Missing")
   say %(Add "scripts": { "build:css": "#{build_script}" } to your package.json), :red
 else
   run %(npm set-script build:css "#{build_script}")
-  run %(yarn build:css)
+  run %(npm run build:css)
 end

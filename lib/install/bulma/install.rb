@@ -1,7 +1,7 @@
 say "Install Bulma"
 copy_file "#{__dir__}/application.bulma.scss",
    "app/assets/stylesheets/application.bulma.scss"
-run "yarn add sass bulma"
+run "npm install sass bulma"
 
 say "Add build:css script"
 build_script = "sass ./app/assets/stylesheets/application.bulma.scss:./app/assets/builds/application.css --no-source-map --load-path=node_modules"
@@ -10,5 +10,5 @@ if (`npx -v`.to_f < 7.1 rescue "Missing")
   say %(Add "scripts": { "build:css": "#{build_script}" } to your package.json), :red
 else
   run %(npm set-script build:css "#{build_script}")
-  run %(yarn build:css)
+  run %(npm run build:css)
 end
